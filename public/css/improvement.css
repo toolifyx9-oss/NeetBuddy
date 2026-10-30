@@ -1,0 +1,199 @@
+/**
+ * NEETBuddy Improvement Book (Trackprep Aesthetic)
+ * Diagnostic mistake notebook styles, root-cause categorization, and re-test cards.
+ */
+
+.improvement-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 1. HERO BANNER */
+.improvement-hero {
+  background: radial-gradient(circle at 90% 40%, rgba(244, 63, 94, 0.45) 0%, transparent 40%), linear-gradient(135deg, #4c0519 0%, #1c0510 100%);
+  color: #ffffff;
+  padding: 36px 40px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.improvement-hero-text h2 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin: 6px 0 10px;
+}
+
+.improvement-hero-text p {
+  color: #fecdd3;
+  font-size: 1.05rem;
+  max-width: 480px;
+}
+
+/* 2. MISTAKE KPI GRID */
+.mistake-kpis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.mistake-kpi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.mistake-kpi-card strong {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1.1;
+  display: block;
+}
+
+.mistake-kpi-card span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* 3. MISTAKE CARD */
+.mistake-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.mistake-card.mastered {
+  border-left: 4px solid var(--brand-emerald);
+}
+
+.mistake-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mistake-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mistake-reason-pill {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.mistake-question-text {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Answer comparison block */
+.answer-comparison-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+}
+
+.answer-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.answer-chip small {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.answer-chip.wrong small { color: var(--brand-rose); }
+.answer-chip.correct small { color: var(--brand-emerald); }
+
+.answer-chip strong {
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* Root cause tagging bar */
+.tag-reason-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 0 4px;
+}
+
+.tag-reason-bar label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.tag-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--border-light);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tag-btn:hover {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.tag-btn.active {
+  background: var(--brand-blue);
+  color: #ffffff;
+  border-color: var(--brand-blue);
+}
+
+.mistake-actions-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 16px;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .mistake-kpis-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .answer-comparison-box {
+    grid-template-columns: 1fr;
+  }
+}

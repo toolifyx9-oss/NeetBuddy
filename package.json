@@ -1,0 +1,26 @@
+{
+  "name": "neetbuddy-platform",
+  "version": "2.0.0",
+  "description": "Enterprise-grade NEET preparation platform inspired by Trackprep with rich analytics, mistake notebook, and NTA mock engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "multer": "^2.5.0",
+    "pdf-parse": "^2.4.5"
+  },
+  "keywords": [
+    "neet",
+    "trackprep",
+    "edtech",
+    "mock-tests",
+    "improvement-book"
+  ],
+  "author": "NEETBuddy Core Team",
+  "license": "ISC"
+}
