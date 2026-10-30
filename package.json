@@ -4,15 +4,25 @@
   "description": "Enterprise-grade NEET preparation platform inspired by Trackprep with rich analytics, mistake notebook, and NTA mock engine",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "server": "node server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "framer-motion": "^14.8.0",
+    "lucide-react": "^1.65.0",
     "multer": "^2.5.0",
-    "pdf-parse": "^2.4.5"
+    "next": "^16.4.3",
+    "pdf-parse": "^2.4.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0"
   },
   "keywords": [
     "neet",
@@ -22,5 +32,16 @@
     "improvement-book"
   ],
   "author": "NEETBuddy Core Team",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
+  }
 }
