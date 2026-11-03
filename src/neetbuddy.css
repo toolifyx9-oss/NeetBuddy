@@ -1182,13 +1182,22 @@ section:nth-of-type(even)::before,
 #app:has(.au-split),
 .app.auth-mode,
 #app:has(.cbt-full),
-.app.cbt-mode {
+.app.cbt-mode,
+#app:has(.lp-native),
+.app.land-mode {
   display: block !important;
   width: 100% !important;
   min-height: 100vh !important;
   grid-template-columns: 1fr !important;
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.lp-native {
+  width: 100% !important;
+  min-height: 100vh !important;
+  position: relative !important;
+  overflow-x: hidden !important;
 }
 
 /* 2. Responsive 2-Column Split Auth UI */

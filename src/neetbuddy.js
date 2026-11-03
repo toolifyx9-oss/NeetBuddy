@@ -1,4 +1,5 @@
 import RAW_QUESTIONS from './data/questionsData.json';
+import { getLandingHtml, mountLandingEvents } from './landing.js';
 
 const LGO = '<img class="lm" src="/assets/aistudio/file_00000000078482078d06c74a563d6525_4715f81f.png" alt="NEETBuddy logo" style="object-fit:contain"/>';
 const $ = s => document.querySelector(s);
@@ -546,6 +547,12 @@ function tgd() {
   try {
     localStorage.nbD = dm ? '1' : '0';
   } catch (e) {}
+  document.documentElement.toggleAttribute('data-d', dm);
+  if (dm) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
   draw();
 }
 
@@ -589,6 +596,9 @@ const wk = [4.1, 2.5, 4.8, 2.9, 5.9, 4.6, 3.2];
 // VIEWS DEFINITIONS (V)
 // ==========================================
 const V = {
+  // 0. NATIVE MARKETING & SHOWCASE LANDING PAGE
+  land: () => getLandingHtml(),
+
   // 1. HOME SCREEN
   home: () => {
     const h = new Date().getHours(), gr = h < 12 ? 'Morning' : h < 17 ? 'Afternoon' : 'Evening';
@@ -1645,6 +1655,7 @@ const V = {
 
       <h2 class="sec" style="margin-top:16px;margin-bottom:8px">Support & Account</h2>
       <div class="mo-l">
+        ${row('🌐', 'Website & Landing Page', '<i>›</i>', "go('land')")}
         ${row('💬', 'Help & Support', '<i>›</i>', "toast('Support email: support@neetbuddy.in')")}
         ${row('🔒', 'Privacy & Syllabus Policy', '<i>›</i>', "toast('Strictly adhering to NMC NEET UG 2026 syllabus')")}
         ${row('ℹ️', 'About NEETBuddy', '<small>v2.5</small>', "toast('NEETBuddy v2.5 by Toolify')")}
@@ -1729,9 +1740,15 @@ const V = {
         <!-- Right Form Column (Spacious & Responsive) -->
         <main class="au-form-col">
           <div class="au-card-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <button type="button" onclick="go('land')" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--g);cursor:pointer;padding:6px 14px;border-radius:10px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.22);transition:0.2s">
+                ← Back to Website
+              </button>
+              <button class="ib tg" aria-label="Toggle dark mode" onclick="tgd()">${dm ? '🌙' : '☀️'}</button>
+            </div>
+
             <div class="au-mobile-brand">
               <div class="au-logo-wrap">${LGO}<span class="au-logo-text">NEET<b>Buddy</b></span></div>
-              <button class="ib tg" aria-label="Toggle dark mode" onclick="tgd()">${dm ? '🌙' : '☀️'}</button>
             </div>
 
             <div class="au-card-header">
@@ -2551,7 +2568,7 @@ function leave() {
   } catch (e) {}
   CU = null;
   S.am = 'Login';
-  go('auth');
+  go('land');
 }
 
 // ==========================================
@@ -2560,21 +2577,30 @@ function leave() {
 function draw() {
   clearInterval(TM);
   document.documentElement.toggleAttribute('data-d', dm);
+  if (dm) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
 
   const appEl = $('#app');
   if (!appEl) return;
 
   const isAuth = S.v === 'auth';
   const isQuiz = S.v === 'quiz';
+  const isLand = S.v === 'land';
 
   appEl.classList.toggle('auth-mode', isAuth);
   appEl.classList.toggle('cbt-mode', isQuiz);
+  appEl.classList.toggle('land-mode', isLand);
 
-  appEl.innerHTML = V[S.v] ? V[S.v]() : V.home();
+  appEl.innerHTML = V[S.v] ? V[S.v]() : (S.v === 'land' ? V.land() : V.home());
 
   if (S.v === 'quiz') {
     tick();
     TM = setInterval(tick, 1000);
+  } else if (S.v === 'land') {
+    mountLandingEvents({ go, tgd, demoLogin });
   }
 }
 
@@ -2722,6 +2748,9 @@ export function initNEETBuddy() {
   try {
     dm = localStorage.nbD === '1';
     document.documentElement.toggleAttribute('data-d', dm);
+    if (dm) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
   } catch (e) {}
 
   let IN = false;
@@ -2733,8 +2762,7 @@ export function initNEETBuddy() {
     S.v = 'home';
     draw();
   } else {
-    S.v = 'auth';
-    S.am = 'Login';
+    S.v = 'land';
     draw();
   }
 }
