@@ -1,0 +1,6 @@
+{
+  "name": "NEETBuddy",
+  "description": "Comprehensive NEET UG preparation platform featuring chapter-wise practice, real CBT mock tests, performance analytics, improvement book, and AI doubt solver.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
